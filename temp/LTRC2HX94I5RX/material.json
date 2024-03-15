@@ -1,0 +1,49 @@
+{
+    "appendColor": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+    },
+    "brand": "",
+    "categoryId": 0,
+    "code": "",
+    "collection": "",
+    "color": "",
+    "companyId": 0,
+    "createTime": 0,
+    "dependent_pak_lists": [
+        "um/D5D0A1414B8F43579AAB619242BC8B5D/0FFF3F734BB6E01DF45A7CAEB87314A8.jpg",
+        "um/D5D0A1414B8F43579AAB619242BC8B5D/9AA31FEC4B7C0D82FDDF77AE45AA46CF.jpg",
+        "um/D5D0A1414B8F43579AAB619242BC8B5D/F2B80D014F3D2C20CF6BAC97A3C5FCD2.jpg",
+        "um/D5D0A1414B8F43579AAB619242BC8B5D/4438CCEF4BB2EFBEF4861BACCF3A93FF.jpg",
+        "m2/white_texture.jpg",
+        "um/0c287394882a475c861cdc7abc8886c8/icon.png"
+    ],
+    "emissiveAppendColor": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+    },
+    "emissiveColor": 0,
+    "fromPlugin": 0,
+    "id": "D5D0A1414B8F43579AAB619242BC8B5D",
+    "isDel": false,
+    "isPrivate": false,
+    "isPublished": false,
+    "isRepeat": false,
+    "isSubmit": false,
+    "landscapeGrassParameter": "",
+    "matInfo": "[\r\n\t{\r\n\t\t\"name\": \"Utiling\",\r\n\t\t\"type\": 1,\r\n\t\t\"value\": \"X=0.800000 Y=0.000000 Z=0.000000\",\r\n\t\t\"group\": \"UV\",\r\n\t\t\"default\": false,\r\n\t\t\"fromPlugin\": 0\r\n\t},\r\n\t{\r\n\t\t\"name\": \"Vtiling\",\r\n\t\t\"type\": 1,\r\n\t\t\"value\": \"X=0.800000 Y=0.000000 Z=0.000000\",\r\n\t\t\"group\": \"UV\",\r\n\t\t\"default\": false,\r\n\t\t\"fromPlugin\": 0\r\n\t},\r\n\t{\r\n\t\t\"name\": \"UVAngle\",\r\n\t\t\"type\": 1,\r\n\t\t\"value\": \"X=0.000000 Y=0.000000 Z=360.000000\",\r\n\t\t\"group\": \"UV\",\r\n\t\t\"default\": false,\r\n\t\t\"fromPlugin\": 0\r\n\t},\r\n\t{\r\n\t\t\"name\": \"Xmove\",\r\n\t\t\"type\": 1,\r\n\t\t\"value\": \"X=0.000000 Y=0.000000 Z=1.000000\",\r\n\t\t\"group\": \"UV\",\r\n\t\t\"default\": false,\r\n\t\t\"fromPlugin\": 0\r\n\t},\r\n\t{\r\n\t\t\"name\": \"Ymove\",\r\n\t\t\"type\": 1,\r\n\t\t\"value\": \"X=0.000000 Y=0.000000 Z=1.000000\",\r\n\t\t\"group\": \"UV\",\r\n\t\t\"default\": false,\r\n\t\t\"fromPlugin\": 0\r\n\t},\r\n\t{\r\n\t\t\"name\": \"Specular\",\r\n\t\t\"type\": 1,\r\n\t\t\"value\": \"X=0.100000 Y=0.000000 Z=1.000000\",\r\n\t\t\"group\": \"Specular\",\r\n\t\t\"default\": false,\r\n\t\t\"fromPlugin\": 0\r\n\t},\r\n\t{\r\n\t\t\"name\": \"Roughness Map (opacity)\",\r\n\t\t\"type\": 1,\r\n\t\t\"value\": \"X=0.400000 Y=0.000000 Z=1.000000\",\r\n\t\t\"group\": \"Roughness\",\r\n\t\t\"default\": false,\r\n\t\t\"fromPlugin\": 0\r\n\t},\r\n\t{\r\n\t\t\"name\": \"Metallic\",\r\n\t\t\"type\": 1,\r\n\t\t\"value\": \"X=0.000000 Y=0.000000 Z=1.000000\",\r\n\t\t\"group\": \"Metallic\",\r\n\t\t\"default\": false,\r\n\t\t\"fromPlugin\": 0\r\n\t},\r\n\t{\r\n\t\t\"name\": \"Normal Map (opacity)\",\r\n\t\t\"type\": 1,\r\n\t\t\"value\": \"X=0.750000 Y=0.000000 Z=1.000000\",\r\n\t\t\"group\": \"Base Normal Map\",\r\n\t\t\"default\": false,\r\n\t\t\"fromPlugin\": 0\r\n\t},\r\n\t{\r\n\t\t\"name\": \"Diffuse (Color)\",\r\n\t\t\"type\": 2,\r\n\t\t\"value\": \"(R=1.220000,G=1.026426,B=0.878400,A=0.000000)\",\r\n\t\t\"group\": \"Base Color\",\r\n\t\t\"default\": false,\r\n\t\t\"fromPlugin\": 0\r\n\t},\r\n\t{\r\n\t\t\"name\": \"Diffuse Map\",\r\n\t\t\"type\": 3,\r\n\t\t\"value\": \"um/D5D0A1414B8F43579AAB619242BC8B5D/0FFF3F734BB6E01DF45A7CAEB87314A8.jpg\",\r\n\t\t\"group\": \"Base Color\",\r\n\t\t\"default\": false,\r\n\t\t\"fromPlugin\": 0\r\n\t},\r\n\t{\r\n\t\t\"name\": \"Normal Map One\",\r\n\t\t\"type\": 3,\r\n\t\t\"value\": \"um/D5D0A1414B8F43579AAB619242BC8B5D/9AA31FEC4B7C0D82FDDF77AE45AA46CF.jpg\",\r\n\t\t\"group\": \"NormalMap Mode\",\r\n\t\t\"default\": false,\r\n\t\t\"fromPlugin\": 0\r\n\t},\r\n\t{\r\n\t\t\"name\": \"SpecularMap\",\r\n\t\t\"type\": 3,\r\n\t\t\"value\": \"um/D5D0A1414B8F43579AAB619242BC8B5D/F2B80D014F3D2C20CF6BAC97A3C5FCD2.jpg\",\r\n\t\t\"group\": \"Specular Map Mode\",\r\n\t\t\"default\": false,\r\n\t\t\"fromPlugin\": 0\r\n\t},\r\n\t{\r\n\t\t\"name\": \"Roughness Map\",\r\n\t\t\"type\": 3,\r\n\t\t\"value\": \"um/D5D0A1414B8F43579AAB619242BC8B5D/4438CCEF4BB2EFBEF4861BACCF3A93FF.jpg\",\r\n\t\t\"group\": \"Roughness Map Mode\",\r\n\t\t\"default\": false,\r\n\t\t\"fromPlugin\": 0\r\n\t},\r\n\t{\r\n\t\t\"name\": \"MetallicMap\",\r\n\t\t\"type\": 3,\r\n\t\t\"value\": \"m2/white_texture.jpg\",\r\n\t\t\"group\": \"Metallic\",\r\n\t\t\"default\": false,\r\n\t\t\"fromPlugin\": 0\r\n\t},\r\n\t{\r\n\t\t\"name\": \"IsInverted_R\",\r\n\t\t\"type\": 1,\r\n\t\t\"value\": \"X=0.000000 Y=0.000000 Z=1.000000\",\r\n\t\t\"group\": \"InvertedR\",\r\n\t\t\"default\": false,\r\n\t\t\"fromPlugin\": 0\r\n\t},\r\n\t{\r\n\t\t\"name\": \"EmissiveSwitcher\",\r\n\t\t\"type\": 1,\r\n\t\t\"value\": \"X=0.000000 Y=0.000000 Z=0.000000\",\r\n\t\t\"group\": \"EmissiveSwitcher\",\r\n\t\t\"default\": false,\r\n\t\t\"fromPlugin\": 0\r\n\t},\r\n\t{\r\n\t\t\"name\": \"Light\",\r\n\t\t\"type\": 1,\r\n\t\t\"value\": \"X=1.000000 Y=0.000000 Z=0.000000\",\r\n\t\t\"group\": \"Light\",\r\n\t\t\"default\": false,\r\n\t\t\"fromPlugin\": 0\r\n\t}\r\n]",
+    "matInfo2": "",
+    "metallic": 0,
+    "pak_url": "m2/Base_9/1.pak",
+    "roughness": 0,
+    "source": 0,
+    "sync_status": 0,
+    "thumbnailUrl": "um/0c287394882a475c861cdc7abc8886c8/icon.png",
+    "title": "国外木纹砖06",
+    "type": 0,
+    "uePath": "/Game/MatLib2/Base/Base/Base_9/m.m",
+    "updateTime": 0,
+    "userId": 0
+}

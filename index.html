@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "./static/threejs/three.module.js",
+            "three/addons/": "./static/threejs/examples/jsm/"
+          }
+        }
+      </script>
+
+
+    <script type="module" src="./plugin.js"></script>
+    <style>
+        #previewer,
+        body {
+            padding: 0%;
+            margin: 0%;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+        }
+    </style>
+
+    <style>
+        .fixed-switch {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .switch,
+        .material-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+            margin-left: 10px;
+            /* 为了在文字和开关之间留出空间 */
+        }
+
+        .switch input,
+        .material-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider,
+        .material-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before,
+        .material-slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked+.slider,
+        input:checked+.material-slider {
+            background-color: #2196F3;
+        }
+
+        input:focus+.slider,
+        input:focus+.material-slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked+.slider:before,
+        input:checked+.material-slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        .slider.round,
+        .material-slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before,
+        .material-slider.round:before {
+            border-radius: 50%;
+        }
+
+        .material-label {
+            display: inline-block;
+            vertical-align: top;
+            /* Align with the switch */
+        }
+
+        .fn__flex {
+            display: flex;
+        }
+
+        .fn__flex.fn__flex-column {
+            flex-direction: column;
+        }
+
+        .fn__relative {
+            position: relative;
+        }
+
+        .fn__flex-1 {
+            flex: 1
+        }
+
+        .b3-card {
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        /* 横向分割线样式 */
+        .hr-horizontal {
+            width: 100%;
+            /* 分割线宽度占满容器 */
+            border-top: 1px solid #ccc;
+            /* 设置分割线的颜色和粗细 */
+            margin: 5px 0;
+            /* 分割线上下的间距 */
+        }
+
+        /* 纵向分割线样式 */
+        .hr-vertical {
+            height: 100%;
+            /* 分割线高度占满容器 */
+            border-left: 1px solid #ccc;
+            /* 设置分割线的颜色和粗细 */
+            margin: 0 10px;
+            /* 分割线左右的间距 */
+            display: inline-block;
+            /* 使元素以行内块级元素显示 */
+            vertical-align: middle;
+            /* 垂直居中 */
+        }
+        .fn__space{
+            min-height: 1rem;
+        }
+    </style>
+</head>
+
+<body id="app">
+
+</body>
+
+</html>
