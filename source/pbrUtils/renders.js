@@ -12,8 +12,8 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { listenfit } from "./size.js";
 import { EventBus } from "../utils/eventBus.js";
 import { adjustHDRBrightness, updateEnvironmentMap } from '../pbrUtils/scene.js';
-import { loadTexture } from "./index.js";
 // 创建并添加自定义的ShaderPass来调整饱和度
+import { updateMaterialProperty } from "./update/updateThreeScene.js";
 window.THREE=THREE
 const saturationShader = {
     uniforms: {
@@ -108,40 +108,18 @@ export function initScene(container) {
     }
 }
 function bindChangeEvents(scene, camera, renderer, material) {
-    const updateMaterialProperty = (property, value, isTexture = false) => {
-        if (isTexture) {
-            
-            if ((value.clear && material[property])||(!value.fileURL&&material[property])) {
-                material[property] = null;
-            } else if (!value.clear) {
-                loadTexture(value.fileURL, (texture) => {
-                    console.log(material,texture,property)
-                    material[property] = texture;
-                    material.needsUpdate = true
-
-                });
-            }
-        } else {
-            material[property] = value;
-        }
-        material.needsUpdate = true;
-    };
-
     eventBus.on('envMapChange', (e) => {
         updateEnvironmentMap(scene, renderer, e.detail.fileURL);
     });
-
     eventBus.on('adjustHDRBrightness', (e) => {
         adjustHDRBrightness(scene, e.detail.value);
     });
-
     const textureProperties = ['map', 'normalMap', 'roughnessMap', 'metalnessMap', 'aoMap', 'displacementMap', 'specularIntensityMap', 'transmissionMap'];
     textureProperties.forEach(property => {
         eventBus.on(`${property}Change`, (e) => {
-            updateMaterialProperty(property, {fileURL: e.detail.fileURL, clear: e.detail.clear}, true);
+            updateMaterialProperty(material,property, {fileURL: e.detail.fileURL, clear: e.detail.clear}, true);
         });
     });
-
     const valueProperties = ['color', 'metalness', 'normalScale', 'roughness', 'aoMapIntensity', 'displacementScale', 'specularIntensity', 'transmission', 'thickness', 'ior'];
     valueProperties.forEach(property => {
         eventBus.on(`${property}Change`, (e) => {
@@ -149,7 +127,7 @@ function bindChangeEvents(scene, camera, renderer, material) {
             if (property === 'normalScale' && material.normalScale) {
                 value = new THREE.Vector2(value, value);
             }
-            updateMaterialProperty(property, value);
+            updateMaterialProperty(material,property, value);
         });
     });
 }
@@ -180,4 +158,4 @@ const refreshPreview = async () => {
         eventBus.eventTarget.status.currentEagleItem = item;
     }
 }
-setInterval(() => requestIdleCallback(refreshPreview), 500)
+//setInterval(() => requestIdleCallback(refreshPreview), 500)

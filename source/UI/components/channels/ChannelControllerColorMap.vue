@@ -15,7 +15,7 @@
     </div>
 </template>
 <script setup>
-import { ref, inject,watch } from 'vue';
+import { ref, inject, watch, nextTick } from 'vue';
 const { eventBus, status } = inject('appData')
 const itemContainer = ref(null)
 const imagePreviewer = ref(null); // 新增对img元素的引用
@@ -29,9 +29,9 @@ const swtichCurrent = () => {
 }
 // 监听 status.material.colorMap 的变化
 watch(() => status.material.colorMap, (newVal, oldVal) => {
-  if (newVal !== oldVal) {
-    imagePreviewer.value.src = newVal || ''; // 更新图片预览
-  }
+    if (newVal !== oldVal) {
+        imagePreviewer.value.src = newVal || ''; // 更新图片预览
+    }
 });
 const handleClear = () => {
     status.material.colorMap = ``
@@ -44,7 +44,8 @@ const handleDrop = (event) => {
         if (file.type.startsWith('image/')) {
             const reader = new FileReader();
             reader.onload = (e) => {
-                status.material.colorMap = `file:///${file.path}`
+                status.material.colorMap = ""
+                nextTick(() => { status.material.colorMap = `file:///${file.path}` })
             };
             reader.readAsDataURL(file); // 读取文件内容
         }

@@ -47,7 +47,7 @@
             sliderClass="ior-slider" valueName="ior" />
         <div class="hr-horizontal"></div>
 
-       <UVControllers></UVControllers>
+        <UVControllers></UVControllers>
 
 
     </div>
@@ -72,14 +72,14 @@ onMounted(
     () => {
         let { scene, camera, renderer, material } = initScene(previewer.value)
         // 假设material是你的MeshPhysicalMaterial实例
-        status.scene=scene
-        status.threeMaterial=material
+        status.scene = scene
+        status.threeMaterial = material
         const defaultHDRPath = status.env.hdr.fileURL
         updateEnvironmentMap(scene, renderer, defaultHDRPath)
         adjustHDRBrightness(scene, 0.1)
     }
 )
-const 导出当前材质 = async()=>{
+const 导出当前材质 = async () => {
     console.log(status.threeMaterial)
 }
 const 预览当前材质 = async () => {
@@ -94,29 +94,29 @@ const 预览当前材质 = async () => {
             zip.extractAllTo(unzipPath, true);
             const materialJson = JSON.parse(window.require('fs').readFileSync(path.join(unzipPath, 'material.json'), 'utf-8'))
             materialJson.matInfo = JSON.parse(materialJson.matInfo)
-            try{
-            let DiffuseMap = getMapInfoValue(materialJson.matInfo, 'Diffuse Map')
-            status.material.colorMap =`file:///${path.join(unzipPath, 'textures', DiffuseMap)}`
-            DiffuseMap && eventBus.emit('mapChange', { fileURL: `file:///${path.join(unzipPath, 'textures', DiffuseMap)}` })
-            }catch(e){
+            try {
+                let DiffuseMap = getMapInfoValue(materialJson.matInfo, 'Diffuse Map')
+                status.material.colorMap = `file:///${path.join(unzipPath, 'textures', DiffuseMap)}`
+                DiffuseMap && eventBus.emit('mapChange', { fileURL: `file:///${path.join(unzipPath, 'textures', DiffuseMap)}` })
+            } catch (e) {
                 console.error(e)
             }
-            try{
-            let AOMap = getMapInfoValue(materialJson.matInfo, 'AOMap')
-            AOMap && eventBus.emit('AOMapChange', { fileURL: `file:///${path.join(unzipPath, 'textures', AOMap)}` })
-            }catch(e){
+            try {
+                let AOMap = getMapInfoValue(materialJson.matInfo, 'AOMap')
+                AOMap && eventBus.emit('AOMapChange', { fileURL: `file:///${path.join(unzipPath, 'textures', AOMap)}` })
+            } catch (e) {
                 console.error(e)
             }
-            try{
-            let NormalMapOne = getMapInfoValue(materialJson.matInfo, 'Normal Map One')
-            eventBus.emit('normalMapChange', { fileURL: `file:///${path.join(unzipPath, 'textures', NormalMapOne || DiffuseMap)}` })
-            }catch(e){
+            try {
+                let NormalMapOne = getMapInfoValue(materialJson.matInfo, 'Normal Map One')
+                eventBus.emit('normalMapChange', { fileURL: `file:///${path.join(unzipPath, 'textures', NormalMapOne || DiffuseMap)}` })
+            } catch (e) {
                 console.error(e)
             }
-            try{
-            let RoughnessMap = getMapInfoValue(materialJson.matInfo, 'Roughness Map')
-            eventBus.emit('roughnessMapChange', { fileURL: `file:///${path.join(unzipPath, 'textures', RoughnessMap)}` })
-        }catch(e){
+            try {
+                let RoughnessMap = getMapInfoValue(materialJson.matInfo, 'Roughness Map')
+                eventBus.emit('roughnessMapChange', { fileURL: `file:///${path.join(unzipPath, 'textures', RoughnessMap)}` })
+            } catch (e) {
                 console.error(e)
             }
             console.log('文件解压成功');

@@ -1,4 +1,5 @@
 import { initVueApp } from "./source/UI/loader/VueComponentsLoader.js";
+import { updateMaterialProperty } from "./source/pbrUtils/update/updateThreeScene.js";
 import { EventBus } from "./source/utils/eventBus.js";
 import { reactive, watch } from './static/vue.esm-browser.js'
 let eventBus = new EventBus('TEPbrPreview')
@@ -9,8 +10,7 @@ let status = reactive({
         },
     },
     material: {
-        color: "",
-        colorMap: ""
+        colorMap:""
     },
     matInfo: [
 
@@ -381,11 +381,23 @@ let status = reactive({
 
 })
 window.status=status
-watch(status, (newStatus, oldStatus) => {
-    if(newStatus.material.colorMap!==oldStatus.material.colorMap){
-        eventBus.emit('mapChange', { fileURL: newStatus.material.colorMap });
+watch(() => status.material.colorMap, (newVal, oldVal) => {
+    console.log(status)
+    if (newVal !== oldVal) {
+        if(status.threeMaterial){
+            updateMaterialProperty(status.threeMaterial,'map',{ fileURL: newVal },true)
+        }
+        //eventBus.emit('mapChange', { fileURL: newVal });
     }
 })
+
+
+
+
+
+
+
+
 const defaultMateriaTemplate = await (await fetch(import.meta.resolve('./assets/defaultMateria/material.json'))).json()
 defaultMateriaTemplate.getMatInfo = () => {
     return JSON.parse(defaultMateriaTemplate.matInfo)
