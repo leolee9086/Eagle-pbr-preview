@@ -20,15 +20,6 @@ const { eventBus, status } = inject('appData')
 const itemContainer = ref(null)
 const imagePreviewer = ref(null); // 新增对img元素的引用
 const imageFileSource = ref(null)
-const selectedColor = ref('#ffffff'); // 默认颜色
-const onColorChange = () => {
-    console.log(selectedColor)
-    requestIdleCallback(
-        () => eventBus.emit(
-            "colorChange", { value: selectedColor.value }
-        )
-    )
-}
 const swtichCurrent = () => {
     itemContainer.value.style.backgroundColor = itemContainer.value.style.backgroundColor ? '' : 'red'
     eventBus.emit('listenEagleItemChange', {
@@ -39,7 +30,7 @@ const swtichCurrent = () => {
 const handleClear = () => {
     imageFileSource.value = ``
     imagePreviewer.value.src = ''; // 将读取到的图片数据设置为img的src
-    eventBus.emit('colorMapChange', { clear: true })
+    eventBus.emit('mapChange', { clear: true })
     status.material.colorMap = ``
 }
 const handleDrop = (event) => {
@@ -52,14 +43,14 @@ const handleDrop = (event) => {
             reader.onload = (e) => {
                 imageFileSource.value = `file:///${file.path}`
                 imagePreviewer.value.src = e.target.result; // 将读取到的图片数据设置为img的src
-                eventBus.emit('colorMapChange', { fileURL: `file:///${file.path}` })
+                eventBus.emit('mapChange', { fileURL: `file:///${file.path}` })
                 status.material.colorMap = `file:///${file.path}`
             };
             reader.readAsDataURL(file); // 读取文件内容
         }
     }
 };
-eventBus.on('colorMapChange',(e)=>{
+eventBus.on('mapChange',(e)=>{
     let fileURL = e.detail.fileURL
     if(fileURL!==imagePreviewer.value.src){
       imagePreviewer.value.src = fileURL

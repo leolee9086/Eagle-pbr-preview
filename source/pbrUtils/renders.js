@@ -94,7 +94,7 @@ export function initScene(container) {
     }
     animate();
     listenfit(camera, renderer)
-    bindChangeEvnets(scene,
+    bindChangeEvents(scene,
         camera,
         renderer,
         material
@@ -107,207 +107,51 @@ export function initScene(container) {
         material
     }
 }
-function bindChangeEvnets(scene,
-    camera,
-    renderer,
-    material
-) {
-    eventBus.on('envMapChange', (e) => {
+function bindChangeEvents(scene, camera, renderer, material) {
+    const updateMaterialProperty = (property, value, isTexture = false) => {
+        if (isTexture) {
+            if (value.clear && material[property]) {
+                material[property] = null;
+            } else if (!value.clear) {
+                console.log(value)
+                loadTexture(value.fileURL, (texture) => {
+                    console.log(material,texture,property)
+                    material[property] = texture;
+                    material.needsUpdate = true
 
-        updateEnvironmentMap(scene, renderer, e.detail.fileURL)
-    })
-    eventBus.on(
-        'adjustHDRBrightness', (e) => {
-            let { value } = e.detail
-            adjustHDRBrightness(scene, value)
-        }
-    )
-    eventBus.on(
-        'colorMapChange', (e) => {
-            if (e.detail.clear) {
-                // 根据传入的贴图名来确定需要清理的贴图属性
-                if (material.map) {
-                    material.map = null; // 清理对应的贴图
-                    material.needsUpdate = true; // 标记材质需要更新
-                }
-                return
+                });
             }
-            console.log(e.detail.fileURL)
-            loadTexture(e.detail.fileURL, (texture) => {
-                material.map = texture
-                material.needsUpdate = true
-            })
-        }
-    )
-    eventBus.on(
-        'colorChange', (e) => {
-            // 设置材质的颜色。Three.js的Color对象接受CSS样式颜色字符串、十六进制等格式。
-            material.color.set(e.detail.value);
-            material.needsUpdate = true; // 标记材质需要更新
-        }
-    )
-    eventBus.on(
-        'metalnessChange', (e) => {
-            // 设置材质的颜色。Three.js的Color对象接受CSS样式颜色字符串、十六进制等格式。
-            material.metalness = parseFloat(e.detail.value);
-            material.needsUpdate = true; // 标记材质需要更新
-        }
-    )
-
-    eventBus.on('normalMapChange', (e) => {
-        if (e.detail.clear) {
-            if (material.normalMap) {
-                material.normalMap = null; // 清理对应的贴图
-                material.needsUpdate = true; // 标记材质需要更新
-            }
-            return
-        }
-        loadTexture(e.detail.fileURL, (texture) => {
-            material.normalMap = texture;
-            material.needsUpdate = true;
-        });
-    });
-
-    eventBus.on('normalScaleChange', (e) => {
-        let { value } = e.detail;
-        if (material.normalScale) {
-            material.normalScale.set(value, value);
         } else {
-            material.normalScale = new THREE.Vector2(value, value);
+            material[property] = value;
         }
         material.needsUpdate = true;
+    };
+
+    eventBus.on('envMapChange', (e) => {
+        updateEnvironmentMap(scene, renderer, e.detail.fileURL);
     });
 
-    eventBus.on('roughnessChange', (e) => {
-        material.roughness = parseFloat(e.detail.value);
-        material.needsUpdate = true;
+    eventBus.on('adjustHDRBrightness', (e) => {
+        adjustHDRBrightness(scene, e.detail.value);
     });
 
-    eventBus.on('roughnessMapChange', (e) => {
-        if (e.detail.clear) {
-            if (material.roughnessMap) {
-                material.roughnessMap = null; // 清理对应的贴图
-                material.needsUpdate = true; // 标记材质需要更新
+    const textureProperties = ['map', 'normalMap', 'roughnessMap', 'metalnessMap', 'aoMap', 'displacementMap', 'specularIntensityMap', 'transmissionMap'];
+    textureProperties.forEach(property => {
+        eventBus.on(`${property}Change`, (e) => {
+            updateMaterialProperty(property, {fileURL: e.detail.fileURL, clear: e.detail.clear}, true);
+        });
+    });
+
+    const valueProperties = ['color', 'metalness', 'normalScale', 'roughness', 'aoMapIntensity', 'displacementScale', 'specularIntensity', 'transmission', 'thickness', 'ior'];
+    valueProperties.forEach(property => {
+        eventBus.on(`${property}Change`, (e) => {
+            let value = property === 'color' ? e.detail.value : parseFloat(e.detail.value);
+            if (property === 'normalScale' && material.normalScale) {
+                value = new THREE.Vector2(value, value);
             }
-            return
-        }
-        loadTexture(e.detail.fileURL, (texture) => {
-            material.roughnessMap = texture;
-            material.needsUpdate = true;
+            updateMaterialProperty(property, value);
         });
     });
-
-    eventBus.on('metalnessMapChange', (e) => {
-        if (e.detail.clear) {
-            if (material.metalnessMap) {
-                material.metalnessMap = null; // 清理对应的贴图
-                material.needsUpdate = true; // 标记材质需要更新
-            }
-            return
-        }
-
-        loadTexture(e.detail.fileURL, (texture) => {
-            material.metalnessMap = texture;
-            material.needsUpdate = true;
-        });
-    });
-
-    eventBus.on('aoMapChange', (e) => {
-        if (e.detail.clear) {
-            if (material.aoMap) {
-                material.aoMap = null; // 清理对应的贴图
-                material.needsUpdate = true; // 标记材质需要更新
-            }
-            return
-        }
-
-        loadTexture(e.detail.fileURL, (texture) => {
-            material.aoMap = texture;
-            material.needsUpdate = true;
-        });
-    });
-
-    eventBus.on('aoMapIntensityChange', (e) => {
-        material.aoMapIntensity = parseFloat(e.detail.value);
-        material.needsUpdate = true;
-    });
-
-    eventBus.on('displacementMapChange', (e) => {
-        if (e.detail.clear) {
-            if (material.displacementMap) {
-                material.displacementMap = null; // 清理对应的贴图
-                material.needsUpdate = true; // 标记材质需要更新
-            }
-            return
-        }
-        loadTexture(e.detail.fileURL, (texture) => {
-            material.displacementMap = texture;
-            material.needsUpdate = true;
-        });
-    });
-
-    eventBus.on('displacementScaleChange', (e) => {
-        material.displacementScale = parseFloat(e.detail.value);
-        material.needsUpdate = true;
-    });
-    eventBus.on('specularIntensityChange', (e) => {
-        // 设置材质的高光
-        material.specularIntensity = parseFloat(e.detail.value);
-        material.needsUpdate = true; // 标记材质需要更新
-    });
-
-    eventBus.on('specularIntensityMapChange', (e) => {
-        if (e.detail.clear) {
-            if (material.specularIntensityMap) {
-                material.specularIntensityMap = null; // 清理对应的贴图
-                material.needsUpdate = true; // 标记材质需要更新
-            }
-            return
-        }
-        // 加载并设置高光贴图
-        loadTexture(e.detail.fileURL, (texture) => {
-            material.specularIntensityMap = texture;
-            material.needsUpdate = true;
-        });
-    });
-
-    eventBus.on('roughnessChange', (e) => {
-        // 设置材质的粗糙度
-        material.roughness = parseFloat(e.detail.value);
-        material.needsUpdate = true; // 标记材质需要更新
-    });
-
-    eventBus.on('roughnessMapChange', (e) => {
-        // 加载并设置粗糙度贴图
-        loadTexture(e.detail.fileURL, (texture) => {
-            material.roughnessMap = texture;
-            material.needsUpdate = true;
-        });
-    });
-    eventBus.on('transmissionChange', (e) => {
-        // 设置材质的粗糙度
-        material.transmission = parseFloat(e.detail.value);
-        material.needsUpdate = true; // 标记材质需要更新
-    });
-    eventBus.on('thicknessChange', (e) => {
-        // 设置材质的粗糙度
-        material.thickness = parseFloat(e.detail.value);
-        material.needsUpdate = true; // 标记材质需要更新
-    });
-    eventBus.on('transmissionMapChange', (e) => {
-        // 加载并设置粗糙度贴图
-        loadTexture(e.detail.fileURL, (texture) => {
-            material.transmissionMap = texture;
-            material.needsUpdate = true;
-        });
-    });
-    eventBus.on('iorChange', (e) => {
-        // 加载并设置粗糙度贴图
-        material.ior = parseFloat(e.detail.value);
-        material.needsUpdate = true; // 标记材质需要更新
-
-    });
-
 }
 
 

@@ -92,7 +92,7 @@ const 预览当前材质 = async () => {
             materialJson.matInfo = JSON.parse(materialJson.matInfo)
             try{
             let DiffuseMap = getMapInfoValue(materialJson.matInfo, 'Diffuse Map')
-            DiffuseMap && eventBus.emit('colorMapChange', { fileURL: `file:///${path.join(unzipPath, 'textures', DiffuseMap)}` })
+            DiffuseMap && eventBus.emit('mapChange', { fileURL: `file:///${path.join(unzipPath, 'textures', DiffuseMap)}` })
             }catch(e){
                 console.error(e)
             }

@@ -381,7 +381,6 @@ let status = reactive({
 
 })
 watch(status, (newStatus, oldStatus) => {
-    console.log(newStatus,oldStatus)
     if(newStatus.env.HDRURL!==oldStatus.env.HDRURL){
         
     }
