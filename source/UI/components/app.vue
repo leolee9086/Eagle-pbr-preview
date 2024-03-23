@@ -80,7 +80,6 @@ onMounted(
 
 const 预览当前材质 = async () => {
     const item = await eagle.item.getSelected()
-    console.log(item)
     if (item[0] && item[0].ext === "d5m") {
         const AdmZip = window.require('adm-zip');
         const path = window.require('path')
@@ -89,7 +88,6 @@ const 预览当前材质 = async () => {
             // 使用adm-zip解压文件
             const zip = new AdmZip(item[0].filePath);
             zip.extractAllTo(unzipPath, true);
-           
             const materialJson = JSON.parse(window.require('fs').readFileSync(path.join(unzipPath, 'material.json'), 'utf-8'))
             materialJson.matInfo = JSON.parse(materialJson.matInfo)
             try{
@@ -99,15 +97,12 @@ const 预览当前材质 = async () => {
                 console.error(e)
             }
             try{
-
             let AOMap = getMapInfoValue(materialJson.matInfo, 'AOMap')
             AOMap && eventBus.emit('AOMapChange', { fileURL: `file:///${path.join(unzipPath, 'textures', AOMap)}` })
             }catch(e){
                 console.error(e)
             }
             try{
-
-
             let NormalMapOne = getMapInfoValue(materialJson.matInfo, 'Normal Map One')
             eventBus.emit('normalMapChange', { fileURL: `file:///${path.join(unzipPath, 'textures', NormalMapOne || DiffuseMap)}` })
             }catch(e){

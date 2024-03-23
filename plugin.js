@@ -387,13 +387,10 @@ watch(status, (newStatus, oldStatus) => {
     }
 })
 const defaultMateriaTemplate = await (await fetch(import.meta.resolve('./assets/defaultMateria/material.json'))).json()
-
 defaultMateriaTemplate.getMatInfo = () => {
     return JSON.parse(defaultMateriaTemplate.matInfo)
 }
 status.matInfo = defaultMateriaTemplate.getMatInfo()
-
-
 eventBus.eventTarget.status = status
 const app = initVueApp(import.meta.resolve('./source/UI/components/app.vue'), 'app', {}, undefined, { eventBus, status })
 await app.mount(document.body)
