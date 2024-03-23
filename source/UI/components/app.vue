@@ -7,6 +7,8 @@
     max-height:100vh;
     overflow:auto;">
         <button @click="预览当前材质">预览当前材质</button>
+        <button @click="导出当前材质">导出当前材质</button>
+
         <ChannelControllerHDR></ChannelControllerHDR>
         <div class="hr-horizontal"></div>
         <channelControllerBaseColor></channelControllerBaseColor>
@@ -77,7 +79,9 @@ onMounted(
         adjustHDRBrightness(scene, 0.1)
     }
 )
-
+const 导出当前材质 = async()=>{
+    console.log(status.threeMaterial)
+}
 const 预览当前材质 = async () => {
     const item = await eagle.item.getSelected()
     if (item[0] && item[0].ext === "d5m") {
@@ -92,6 +96,7 @@ const 预览当前材质 = async () => {
             materialJson.matInfo = JSON.parse(materialJson.matInfo)
             try{
             let DiffuseMap = getMapInfoValue(materialJson.matInfo, 'Diffuse Map')
+            status.material.colorMap =`file:///${path.join(unzipPath, 'textures', DiffuseMap)}`
             DiffuseMap && eventBus.emit('mapChange', { fileURL: `file:///${path.join(unzipPath, 'textures', DiffuseMap)}` })
             }catch(e){
                 console.error(e)

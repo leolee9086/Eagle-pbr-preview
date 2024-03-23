@@ -380,9 +380,10 @@ let status = reactive({
     }
 
 })
+window.status=status
 watch(status, (newStatus, oldStatus) => {
-    if(newStatus.env.HDRURL!==oldStatus.env.HDRURL){
-        
+    if(newStatus.material.colorMap!==oldStatus.material.colorMap){
+        eventBus.emit('mapChange', { fileURL: newStatus.material.colorMap });
     }
 })
 const defaultMateriaTemplate = await (await fetch(import.meta.resolve('./assets/defaultMateria/material.json'))).json()

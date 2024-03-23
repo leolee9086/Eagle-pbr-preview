@@ -15,7 +15,7 @@
     </div>
 </template>
 <script setup>
-import { ref, inject } from 'vue';
+import { ref, inject,watch } from 'vue';
 const { eventBus, status } = inject('appData')
 const itemContainer = ref(null)
 const imagePreviewer = ref(null); // 新增对img元素的引用
@@ -27,10 +27,13 @@ const swtichCurrent = () => {
         key: "envMap"
     })
 }
+// 监听 status.material.colorMap 的变化
+watch(() => status.material.colorMap, (newVal, oldVal) => {
+  if (newVal !== oldVal) {
+    imagePreviewer.value.src = newVal || ''; // 更新图片预览
+  }
+});
 const handleClear = () => {
-    imageFileSource.value = ``
-    imagePreviewer.value.src = ''; // 将读取到的图片数据设置为img的src
-    eventBus.emit('mapChange', { clear: true })
     status.material.colorMap = ``
 }
 const handleDrop = (event) => {
@@ -41,22 +44,13 @@ const handleDrop = (event) => {
         if (file.type.startsWith('image/')) {
             const reader = new FileReader();
             reader.onload = (e) => {
-                imageFileSource.value = `file:///${file.path}`
-                imagePreviewer.value.src = e.target.result; // 将读取到的图片数据设置为img的src
-                eventBus.emit('mapChange', { fileURL: `file:///${file.path}` })
                 status.material.colorMap = `file:///${file.path}`
             };
             reader.readAsDataURL(file); // 读取文件内容
         }
     }
 };
-eventBus.on('mapChange',(e)=>{
-    let fileURL = e.detail.fileURL
-    if(fileURL!==imagePreviewer.value.src){
-      imagePreviewer.value.src = fileURL
-      status.material.colorMap=fileURL
-    }
-  })
+
 </script>
 <style>
 .b3-card-img-container {

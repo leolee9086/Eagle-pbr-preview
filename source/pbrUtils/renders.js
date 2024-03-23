@@ -110,10 +110,10 @@ export function initScene(container) {
 function bindChangeEvents(scene, camera, renderer, material) {
     const updateMaterialProperty = (property, value, isTexture = false) => {
         if (isTexture) {
-            if (value.clear && material[property]) {
+            
+            if ((value.clear && material[property])||(!value.fileURL&&material[property])) {
                 material[property] = null;
             } else if (!value.clear) {
-                console.log(value)
                 loadTexture(value.fileURL, (texture) => {
                     console.log(material,texture,property)
                     material[property] = texture;
