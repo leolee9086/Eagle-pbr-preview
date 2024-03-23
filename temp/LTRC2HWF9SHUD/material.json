@@ -1,0 +1,52 @@
+{
+	"id": "678C15FD48CA7AA27E9EBABA692B6ADB",
+	"title": "国外木纹砖01",
+	"uePath": "/Game/MatLib2/Base/Base/Base_9/m.m",
+	"matInfo": "[{\"name\":\"Utiling\",\"type\":1,\"value\":\"X=0.800000 Y=0.000000 Z=0.000000\",\"group\":\"UV\",\"default\":false,\"fromPlugin\":0},{\"name\":\"Vtiling\",\"type\":1,\"value\":\"X=0.800000 Y=0.000000 Z=0.000000\",\"group\":\"UV\",\"default\":false,\"fromPlugin\":0},{\"name\":\"UVAngle\",\"type\":1,\"value\":\"X=0.000000 Y=0.000000 Z=360.000000\",\"group\":\"UV\",\"default\":false,\"fromPlugin\":0},{\"name\":\"Xmove\",\"type\":1,\"value\":\"X=0.000000 Y=0.000000 Z=1.000000\",\"group\":\"UV\",\"default\":false,\"fromPlugin\":0},{\"name\":\"Ymove\",\"type\":1,\"value\":\"X=0.000000 Y=0.000000 Z=1.000000\",\"group\":\"UV\",\"default\":false,\"fromPlugin\":0},{\"name\":\"Specular\",\"type\":1,\"value\":\"X=0.140000 Y=0.000000 Z=1.000000\",\"group\":\"Specular\",\"default\":false,\"fromPlugin\":0},{\"name\":\"Roughness Map (opacity)\",\"type\":1,\"value\":\"X=1.000000 Y=0.000000 Z=1.000000\",\"group\":\"Roughness\",\"default\":false,\"fromPlugin\":0},{\"name\":\"Metallic\",\"type\":1,\"value\":\"X=0.000000 Y=0.000000 Z=1.000000\",\"group\":\"Metallic\",\"default\":false,\"fromPlugin\":0},{\"name\":\"Normal Map (opacity)\",\"type\":1,\"value\":\"X=1.000000 Y=0.000000 Z=1.000000\",\"group\":\"Base Normal Map\",\"default\":false,\"fromPlugin\":0},{\"name\":\"Diffuse (Color)\",\"type\":2,\"value\":\"(R=0.610000,G=0.513213,B=0.439200,A=1.000000)\",\"group\":\"Base Color\",\"default\":false,\"fromPlugin\":0},{\"name\":\"Diffuse Map\",\"type\":3,\"value\":\"um/D5D0A1414B8F43579AAB619242BC8B5D/C36151434205317109C102B4FB9138AE.png\",\"group\":\"Base Color\",\"default\":false,\"fromPlugin\":0},{\"name\":\"Normal Map One\",\"type\":3,\"value\":\"um/D5D0A1414B8F43579AAB619242BC8B5D/FB8120404C8EB295E7A1859D644C5F60.png\",\"group\":\"NormalMap Mode\",\"default\":false,\"fromPlugin\":0},{\"name\":\"SpecularMap\",\"type\":3,\"value\":\"um/D5D0A1414B8F43579AAB619242BC8B5D/161F819244322BA20279D293A098610F.png\",\"group\":\"Specular Map Mode\",\"default\":false,\"fromPlugin\":0},{\"name\":\"Roughness Map\",\"type\":3,\"value\":\"um/D5D0A1414B8F43579AAB619242BC8B5D/6FE183164AC407B7E9040688FE746310.png\",\"group\":\"Roughness Map Mode\",\"default\":false,\"fromPlugin\":0},{\"name\":\"MetallicMap\",\"type\":3,\"value\":\"m2/white_texture.jpg\",\"group\":\"Metallic\",\"default\":false,\"fromPlugin\":0},{\"name\":\"IsInverted_R\",\"type\":1,\"value\":\"X=0.000000 Y=0.000000 Z=1.000000\",\"group\":\"InvertedR\",\"default\":false,\"fromPlugin\":0},{\"name\":\"EmissiveSwitcher\",\"type\":1,\"value\":\"X=0.000000 Y=0.000000 Z=0.000000\",\"group\":\"EmissiveSwitcher\",\"default\":false,\"fromPlugin\":0},{\"name\":\"Light\",\"type\":1,\"value\":\"X=1.000000 Y=0.000000 Z=0.000000\",\"group\":\"Light\",\"default\":false,\"fromPlugin\":0},{\"name\":\"CastShadow\",\"type\":1,\"value\":\"X=1.000000 Y=0.000000 Z=0.000000\",\"group\":\"CastShadow\",\"default\":false,\"fromPlugin\":0},{\"name\":\"EmissiveTemperature\",\"type\":1,\"value\":\"X=6500.000000 Y=0.000000 Z=0.000000\",\"group\":\"EmissiveTemperature\",\"default\":false,\"fromPlugin\":0},{\"name\":\"DiffuseMap_GammaMode\",\"type\":1,\"value\":\"X=1.000000 Y=0.000000 Z=0.000000\",\"group\":\"DiffuseMap_GammaMode\",\"default\":false,\"fromPlugin\":0},{\"name\":\"NormalMap_GammaMode\",\"type\":1,\"value\":\"X=0.000000 Y=0.000000 Z=0.000000\",\"group\":\"NormalMap_GammaMode\",\"default\":false,\"fromPlugin\":0},{\"name\":\"SpecularMap_GammaMode\",\"type\":1,\"value\":\"X=1.000000 Y=0.000000 Z=0.000000\",\"group\":\"SpecularMap_GammaMode\",\"default\":false,\"fromPlugin\":0},{\"name\":\"RoughnessMap_GammaMode\",\"type\":1,\"value\":\"X=1.000000 Y=0.000000 Z=0.000000\",\"group\":\"RoughnessMap_GammaMode\",\"default\":false,\"fromPlugin\":0},{\"name\":\"MetallicMap_GammaMode\",\"type\":1,\"value\":\"X=1.000000 Y=0.000000 Z=0.000000\",\"group\":\"MetallicMap_GammaMode\",\"default\":false,\"fromPlugin\":0},{\"name\":\"OpacityMap_GammaMode\",\"type\":1,\"value\":\"X=1.000000 Y=0.000000 Z=0.000000\",\"group\":\"OpacityMap_GammaMode\",\"default\":false,\"fromPlugin\":0},{\"name\":\"HeightMap_GammaMode\",\"type\":1,\"value\":\"X=1.000000 Y=0.000000 Z=0.000000\",\"group\":\"HeightMap_GammaMode\",\"default\":false,\"fromPlugin\":0},{\"name\":\"SubsurfaceMap_GammaMode\",\"type\":1,\"value\":\"X=1.000000 Y=0.000000 Z=0.000000\",\"group\":\"SubsurfaceMap_GammaMode\",\"default\":false,\"fromPlugin\":0},{\"name\":\"AOMap_GammaMode\",\"type\":1,\"value\":\"X=1.000000 Y=0.000000 Z=0.000000\",\"group\":\"AOMap_GammaMode\",\"default\":false,\"fromPlugin\":0},{\"name\":\"EmissiveMap_GammaMode\",\"type\":1,\"value\":\"X=1.000000 Y=0.000000 Z=0.000000\",\"group\":\"EmissiveMap_GammaMode\",\"default\":false,\"fromPlugin\":0},{\"name\":\"DiffuseColorStrength\",\"type\":1,\"value\":\"X=2.000000 Y=0.000000 Z=0.000000\",\"group\":\"DiffuseColorStrength\",\"default\":false,\"fromPlugin\":0},{\"name\":\"ChamferEnbale\",\"type\":1,\"value\":\"X=0.000000 Y=0.000000 Z=0.000000\",\"group\":\"ChamferEnbale\",\"default\":false,\"fromPlugin\":0},{\"name\":\"ChamferRadius\",\"type\":1,\"value\":\"X=0.300000 Y=0.000000 Z=0.000000\",\"group\":\"ChamferRadius\",\"default\":false,\"fromPlugin\":0},{\"name\":\"LimitColorEnable\",\"type\":1,\"value\":\"X=0.000000 Y=0.000000 Z=0.000000\",\"group\":\"LimitColorEnable\",\"default\":false,\"fromPlugin\":0},{\"name\":\"EmissiveTempEnable\",\"type\":1,\"value\":\"X=0.000000 Y=0.000000 Z=0.000000\",\"group\":\"EmissiveTempEnable\",\"default\":false,\"fromPlugin\":0},{\"name\":\"ThicknessMap_GammaMode\",\"type\":1,\"value\":\"X=1.000000 Y=0.000000 Z=0.000000\",\"group\":\"ThicknessMap_GammaMode\",\"default\":false,\"fromPlugin\":0}]",
+	"matInfo2": "",
+	"landscapeGrassParameter": "",
+	"thumbnailUrl": "um/0c287394882a475c861cdc7abc8886c8/icon.png",
+	"isDel": false,
+	"isPrivate": false,
+	"userId": 0,
+	"companyId": 0,
+	"createTime": 0,
+	"updateTime": 0,
+	"categoryId": 0,
+	"brand": "",
+	"code": "",
+	"collection": "",
+	"color": "",
+	"metallic": 0,
+	"roughness": 0,
+	"emissiveColor": 0,
+	"type": 0,
+	"isRepeat": false,
+	"isSubmit": false,
+	"source": 0,
+	"isPublished": false,
+	"sync_status": 0,
+	"pak_url": "m2/Base_9/1.pak",
+	"dependent_pak_lists": [
+		"um/D5D0A1414B8F43579AAB619242BC8B5D/C36151434205317109C102B4FB9138AE.png",
+		"um/D5D0A1414B8F43579AAB619242BC8B5D/FB8120404C8EB295E7A1859D644C5F60.png",
+		"um/D5D0A1414B8F43579AAB619242BC8B5D/161F819244322BA20279D293A098610F.png",
+		"um/D5D0A1414B8F43579AAB619242BC8B5D/6FE183164AC407B7E9040688FE746310.png",
+		"m2/white_texture.jpg",
+		"um/0c287394882a475c861cdc7abc8886c8/icon.png"
+	],
+	"appendColor":
+	{
+		"x": 0,
+		"y": 0,
+		"z": 0
+	},
+	"emissiveAppendColor":
+	{
+		"x": 0,
+		"y": 0,
+		"z": 0
+	},
+	"fromPlugin": 0,
+	"fromReplace": true
+}

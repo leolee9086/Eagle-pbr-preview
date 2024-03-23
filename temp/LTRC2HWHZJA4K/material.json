@@ -1,0 +1,46 @@
+{
+    "appendColor": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+    },
+    "brand": "",
+    "categoryId": 0,
+    "code": "",
+    "collection": "",
+    "color": "",
+    "companyId": 0,
+    "createTime": 0,
+    "dependent_pak_lists": [
+        "um/3DAE85554E1BE7F65A03A581D31C2D15/C15C29D3420D64524A4E71BBD5A63F82.jpg",
+        "um/3DAE85554E1BE7F65A03A581D31C2D15/A61EC1D34FEFF2B378B446A3D5FCDD49.jpg",
+        "um/3DAE85554E1BE7F65A03A581D31C2D15/F0FFCE1649F8B12A84ACB9A7D13B3972.jpg",
+        "ModelTextures/C9854F6D442A706278793F8B70341C1B/55.tif"
+    ],
+    "emissiveAppendColor": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+    },
+    "emissiveColor": 0,
+    "id": "3DAE85554E1BE7F65A03A581D31C2D15",
+    "isDel": false,
+    "isPrivate": false,
+    "isPublished": false,
+    "isRepeat": false,
+    "isSubmit": false,
+    "landscapeGrassParameter": "",
+    "matInfo": "[\r\n\t{\r\n\t\t\"name\": \"Diffuse Map\",\r\n\t\t\"type\": 3,\r\n\t\t\"value\": \"um/3DAE85554E1BE7F65A03A581D31C2D15/C15C29D3420D64524A4E71BBD5A63F82.jpg\",\r\n\t\t\"group\": \"Base Color\",\r\n\t\t\"default\": false\r\n\t},\r\n\t{\r\n\t\t\"name\": \"Utiling\",\r\n\t\t\"type\": 1,\r\n\t\t\"value\": \"X=39.370079 Y=0.000000 Z=0.000000\",\r\n\t\t\"group\": \"UV\",\r\n\t\t\"default\": false\r\n\t},\r\n\t{\r\n\t\t\"name\": \"Vtiling\",\r\n\t\t\"type\": 1,\r\n\t\t\"value\": \"X=39.370079 Y=0.000000 Z=0.000000\",\r\n\t\t\"group\": \"UV\",\r\n\t\t\"default\": false\r\n\t},\r\n\t{\r\n\t\t\"name\": \"EmissiveSwitcher\",\r\n\t\t\"type\": 1,\r\n\t\t\"value\": \"X=0.000000 Y=0.000000 Z=0.000000\",\r\n\t\t\"group\": \"EmissiveSwitcher\",\r\n\t\t\"default\": false\r\n\t},\r\n\t{\r\n\t\t\"name\": \"Light\",\r\n\t\t\"type\": 1,\r\n\t\t\"value\": \"X=1.000000 Y=0.000000 Z=0.000000\",\r\n\t\t\"group\": \"Light\",\r\n\t\t\"default\": false\r\n\t},\r\n\t{\r\n\t\t\"name\": \"Roughness Map (opacity)\",\r\n\t\t\"type\": 1,\r\n\t\t\"value\": \"X=0.150000 Y=0.000000 Z=1.000000\",\r\n\t\t\"group\": \"Roughness\",\r\n\t\t\"default\": false\r\n\t},\r\n\t{\r\n\t\t\"name\": \"Normal Map (opacity)\",\r\n\t\t\"type\": 1,\r\n\t\t\"value\": \"X=1.000000 Y=0.000000 Z=1.000000\",\r\n\t\t\"group\": \"Base Normal Map\",\r\n\t\t\"default\": false\r\n\t},\r\n\t{\r\n\t\t\"name\": \"Normal Map One\",\r\n\t\t\"type\": 3,\r\n\t\t\"value\": \"um/3DAE85554E1BE7F65A03A581D31C2D15/A61EC1D34FEFF2B378B446A3D5FCDD49.jpg\",\r\n\t\t\"group\": \"NormalMap Mode\",\r\n\t\t\"default\": false\r\n\t},\r\n\t{\r\n\t\t\"name\": \"SpecularMap\",\r\n\t\t\"type\": 3,\r\n\t\t\"value\": \"um/3DAE85554E1BE7F65A03A581D31C2D15/F0FFCE1649F8B12A84ACB9A7D13B3972.jpg\",\r\n\t\t\"group\": \"Specular Map Mode\",\r\n\t\t\"default\": false\r\n\t}\r\n]",
+    "matInfo2": "",
+    "metallic": 0,
+    "pak_url": "",
+    "roughness": 0,
+    "source": 0,
+    "sync_status": 0,
+    "thumbnailUrl": "ModelTextures/C9854F6D442A706278793F8B70341C1B/55.tif",
+    "title": "木地板20",
+    "type": 0,
+    "uePath": "/Game/MatLib2/Base/Base/Base_9/m.m",
+    "updateTime": 0,
+    "userId": 0
+}

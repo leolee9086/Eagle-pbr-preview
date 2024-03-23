@@ -4,7 +4,7 @@ import {
     PerspectiveCamera, PMREMGenerator,
     Scene, SphereGeometry, WebGLRenderer, TextureLoader
 } from "three";
-
+import * as THREE from 'three'
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
@@ -14,6 +14,7 @@ import { EventBus } from "../utils/eventBus.js";
 import { adjustHDRBrightness, updateEnvironmentMap } from '../pbrUtils/scene.js';
 import { loadTexture } from "./index.js";
 // 创建并添加自定义的ShaderPass来调整饱和度
+window.THREE=THREE
 const saturationShader = {
     uniforms: {
         tDiffuse: { value: null },
@@ -63,7 +64,7 @@ export function initScene(container) {
   //  directionalLight.position.set(500, 300, 500);
    // scene.add(directionalLight);
     // 创建球体几何体
-    const geometry = new SphereGeometry(1, 1000, 1000);
+    const geometry = new SphereGeometry(1, 200, 200);
     // 创建PBR材质
     const material = new MeshPhysicalMaterial({
         color: 0xffffff, // 白色

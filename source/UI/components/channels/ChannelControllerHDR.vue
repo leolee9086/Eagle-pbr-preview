@@ -15,7 +15,7 @@
                 max="1" 
                 step="0.01"
                 @input="adjustHDRBrightness" 
-                value='0.5'/>
+                :value='0.1'/>
                 <div class="fn__space fn__flex-1"></div>
                 <span></span>
             </div>

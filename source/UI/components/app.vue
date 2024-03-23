@@ -13,16 +13,16 @@
         <div class="hr-horizontal"></div>
         <channelControllerColorMap></channelControllerColorMap>
         <div class="hr-horizontal"></div>
-        <ChannelControllerGeneric label="法线" :min="-1" :max="1" :step="0.01" :initialValue="0" eventName="normalScaleChange"
-            sliderClass="normal-slider" valueName="normalScale" mapName="normalMap" />
+        <ChannelControllerGeneric label="法线" :min="-1" :max="1" :step="0.01" :initialValue="0"
+            eventName="normalScaleChange" sliderClass="normal-slider" valueName="normalScale" mapName="normalMap" />
         <div class="hr-horizontal"></div>
         <!--  <ChannelControllerMetalness></ChannelControllerMetalness>
        -->
-        <ChannelControllerGeneric label="金属度" :min="0" :max="1" :step="0.01" :initialValue="0" eventName="metalnessChange"
-            sliderClass="metalness-slider" valueName="metalness" mapName="metalnessMap" />
+        <ChannelControllerGeneric label="金属度" :min="0" :max="1" :step="0.01" :initialValue="0"
+            eventName="metalnessChange" sliderClass="metalness-slider" valueName="metalness" mapName="metalnessMap" />
         <div class="hr-horizontal"></div>
-        <ChannelControllerGeneric label="粗糙度" :min="0" :max="1" :step="0.01" :initialValue="0.5" eventName="roughnessChange"
-            sliderClass="roughness-slider" valueName="roughness" mapName="roughnessMap" />
+        <ChannelControllerGeneric label="粗糙度" :min="0" :max="1" :step="0.01" :initialValue="0.5"
+            eventName="roughnessChange" sliderClass="roughness-slider" valueName="roughness" mapName="roughnessMap" />
         <div class="hr-horizontal"></div>
 
         <ChannelControllerGeneric :min="0" :max="2" :step="0.01" label="高光" :initialValue="0.5"
@@ -39,10 +39,15 @@
             eventName="aoMapIntensityChange" sliderClass="ao-slider" valueName="aoMapIntensity" mapName="aoMap" />
         <div class="hr-horizontal"></div>
 
-        <ChannelControllerGeneric label="厚度" :min="0" :max="1" :step="0.01" :initialValue="0" eventName="thicknessChange"
-            sliderClass="opacity-slider" valueName="thickness" />
+        <ChannelControllerGeneric label="厚度" :min="0" :max="1" :step="0.01" :initialValue="0"
+            eventName="thicknessChange" sliderClass="opacity-slider" valueName="thickness" />
         <ChannelControllerGeneric label="折射率" :min="1" :max="2.42" :step="0.01" :initialValue="0" eventName="iorChange"
             sliderClass="ior-slider" valueName="ior" />
+        <div class="hr-horizontal"></div>
+
+       <UVControllers></UVControllers>
+
+
     </div>
     <div id="previewer" ref="previewer">
     </div>
@@ -55,52 +60,73 @@ import ChannelControllerBaseColor from './channels/ChannelControllerBaseColor.vu
 import ChannelControllerColorMap from './channels/ChannelControllerColorMap.vue';
 import ChannelControllerGeneric from './channels/ChannelControllerGeneric.vue';
 import baseIcons from './common/baseIcons.vue'
+import UVControllers from './common/UVControllers.vue';
 import { initScene } from '../../pbrUtils/renders.js'
 
-import { updateEnvironmentMap } from '../../pbrUtils/scene.js';
-const { status,eventBus } = inject('appData')
+import { adjustHDRBrightness, updateEnvironmentMap } from '../../pbrUtils/scene.js';
+const { status, eventBus } = inject('appData')
 const previewer = ref(null)
 onMounted(
     () => {
         let { scene, camera, renderer, material } = initScene(previewer.value)
         // 假设material是你的MeshPhysicalMaterial实例
+        status.scene=scene
+        status.threeMaterial=material
         const defaultHDRPath = status.env.hdr.fileURL
         updateEnvironmentMap(scene, renderer, defaultHDRPath)
-
+        adjustHDRBrightness(scene, 0.1)
     }
 )
 
-const 预览当前材质 = async()=>{
-    const item =await eagle.item.getSelected()
+const 预览当前材质 = async () => {
+    const item = await eagle.item.getSelected()
     console.log(item)
-    if(item[0]&&item[0].ext==="d5m"){
+    if (item[0] && item[0].ext === "d5m") {
         const AdmZip = window.require('adm-zip');
-        const path=window.require('path')
-        const unzipPath = path.join(eagle.plugin.path,'temp',item[0].id)
+        const path = window.require('path')
+        const unzipPath = path.join(eagle.plugin.path, 'temp', item[0].id)
         try {
             // 使用adm-zip解压文件
             const zip = new AdmZip(item[0].filePath);
             zip.extractAllTo(unzipPath, true);
-            const materialJson=JSON.parse( window.require('fs').readFileSync(path.join(unzipPath,'material.json'),'utf-8'))
-            materialJson.matInfo=JSON.parse(materialJson.matInfo)
-            console.log(materialJson)
+           
+            const materialJson = JSON.parse(window.require('fs').readFileSync(path.join(unzipPath, 'material.json'), 'utf-8'))
+            materialJson.matInfo = JSON.parse(materialJson.matInfo)
+            try{
+            let DiffuseMap = getMapInfoValue(materialJson.matInfo, 'Diffuse Map')
+            DiffuseMap && eventBus.emit('colorMapChange', { fileURL: `file:///${path.join(unzipPath, 'textures', DiffuseMap)}` })
+            }catch(e){
+                console.error(e)
+            }
+            try{
 
-            let DiffuseMap=getMapInfoValue(materialJson.matInfo,'Diffuse Map')
-            DiffuseMap&&eventBus.emit('colorMapChange',{fileURL:`file:///${path.join(unzipPath,'textures',DiffuseMap)}`})
-            let AOMap=getMapInfoValue(materialJson.matInfo,'AOMap')
-            AOMap&&eventBus.emit('AOMapChange',{fileURL:`file:///${path.join(unzipPath,'textures',AOMap)}`})
-            let NormalMapOne = getMapInfoValue(materialJson.matInfo,'Normal Map One')
-            eventBus.emit('normalMapChange',{fileURL:`file:///${path.join(unzipPath,'textures',NormalMapOne||DiffuseMap)}`})
-            let RoughnessMap =getMapInfoValue(materialJson.matInfo,'Roughness Map')
-            eventBus.emit('roughnessMapChange',{fileURL:`file:///${path.join(unzipPath,'textures',RoughnessMap)}`})
+            let AOMap = getMapInfoValue(materialJson.matInfo, 'AOMap')
+            AOMap && eventBus.emit('AOMapChange', { fileURL: `file:///${path.join(unzipPath, 'textures', AOMap)}` })
+            }catch(e){
+                console.error(e)
+            }
+            try{
+
+
+            let NormalMapOne = getMapInfoValue(materialJson.matInfo, 'Normal Map One')
+            eventBus.emit('normalMapChange', { fileURL: `file:///${path.join(unzipPath, 'textures', NormalMapOne || DiffuseMap)}` })
+            }catch(e){
+                console.error(e)
+            }
+            try{
+            let RoughnessMap = getMapInfoValue(materialJson.matInfo, 'Roughness Map')
+            eventBus.emit('roughnessMapChange', { fileURL: `file:///${path.join(unzipPath, 'textures', RoughnessMap)}` })
+        }catch(e){
+                console.error(e)
+            }
             console.log('文件解压成功');
         } catch (error) {
             console.error('解压文件时发生错误:', error);
         }
     }
 }
-const getMapInfoValue=(matInfo,name)=>{
-    let item = matInfo.find(item=>{return item.name ===name})
-    return item&&item.value
+const getMapInfoValue = (matInfo, name) => {
+    let item = matInfo.find(item => { return item.name === name })
+    return item && item.value
 }
 </script>
