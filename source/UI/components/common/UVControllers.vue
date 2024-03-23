@@ -14,7 +14,6 @@
 
         </div>
         <div class="fn__space"></div>
-
         <div class="fn__flex">
             偏移
             <svg style="color: gray;transform: rotate(90deg);width: 1rem;height: 1rem;">
@@ -81,10 +80,8 @@ const handlerVtilingChange = (e) => {
     }
     updateMaterialUV(status.threeMaterial, Vtiling.value, Utiling.value)
 }
-const updateMaterialUV = (material, utiling, vtiling) => {
+const updateMaterialUV = (material, utiling, vtiling,textureProperties=['map', 'normalMap', 'bumpMap', 'alphaMap', 'emissiveMap','aoMap']) => {
     // 定义需要更新的纹理属性列表
-    const textureProperties = ['map', 'normalMap', 'bumpMap', 'alphaMap', 'emissiveMap','aoMap'];
-
     textureProperties.forEach(prop => {
         const texture = material[prop];
         if (texture) {
@@ -96,7 +93,6 @@ const updateMaterialUV = (material, utiling, vtiling) => {
             texture.needsUpdate = true;
         }
     });
-
     if (!material.map) {
         console.warn('Material does not have a texture map to update UVs');
     }
